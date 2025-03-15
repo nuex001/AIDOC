@@ -82,7 +82,7 @@ app.get(
   passport.authenticate("github", { session: false }),
   (req, res) => {
     const { user, token } = req.user;
-    res.redirect(`http://localhost:5173/sign?token=${token}`);
+    res.redirect(`https://aidoc-doc.netlify.app/sign?token=${token}`);
   }
 );
 
