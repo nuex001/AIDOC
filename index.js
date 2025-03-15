@@ -32,7 +32,7 @@ passport.use(
     {
       clientID: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
-      callbackURL: "http://localhost:5000/auth/github/callback",
+      callbackURL: "https://aidoc-production-8039.up.railway.app/auth/github/callback",
       scope: ["read:user", "public_repo", "user:email"],
     },
     async (accessToken, refreshToken, profile, done) => {
