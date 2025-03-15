@@ -11,11 +11,10 @@ function App() {
       <div className="container">
         <ScrollToTop />
         <Routes>
-          {/* <Route exact path="/home" element={<Home />} /> */}
+          <Route exact path="/sign" element={<Sign />} />
           <Route element={<PrivateRoute />}>
             <Route exact path="/" element={<Home />} />
           </Route>
-          <Route exact path="/sign" element={<Sign />} />
         </Routes>
       </div>
     </BrowserRouter>
