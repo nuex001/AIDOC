@@ -14,8 +14,15 @@ const User = require("../models/User");
 
 //
 function summarizeContent(content) {
+  // Ensure content is a string to avoid TypeError
+  if (typeof content !== "string") {
+    console.error("Error: Content is not a valid string", content);
+    return;
+  }
+
   // If content is short, return as is
   if (content.length <= 5000) return content;
+  console.log(content);
 
   // Extract first 5000 chars, last 5000 chars, and unique functions/classes
   const firstPart = content.slice(0, 5000);
@@ -269,7 +276,7 @@ Here are the files to document:
     res.json({ documentation: documentation.join("\n\n") });
   } catch (error) {
     console.error("Error generating documentation:", error);
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: error.message });
   }
 });
 
