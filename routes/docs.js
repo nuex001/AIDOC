@@ -268,7 +268,7 @@ Here are the files to document:
     await user.save();
     res.json({ documentation: documentation.join("\n\n") });
   } catch (error) {
-    console.error("Error generating documentation:", c);
+    console.error("Error generating documentation:", error);
     res.status(500).json({ error: err.message });
   }
 });
