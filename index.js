@@ -66,6 +66,11 @@ app.use(passport.initialize());
 app.use(express.json());
 app.use(upload());
 
+// TEST
+app.get("/", async (req, res) => {
+  res.json({ msg: "Gotten successfully" });
+});
+
 // GitHub Auth Route
 app.get("/auth/github", (req, res) => {
   const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}&scope=read:user,user:email`;
