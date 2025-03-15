@@ -10,7 +10,7 @@ const upload = require("express-fileupload");
 // Initialize Express
 const app = express();
 
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(cors({ origin: "*", credentials: true }));
 
 // MongoDB User Model (Create a new file `User.js` in `models` folder)
 const User = require("./models/User");
