@@ -151,7 +151,7 @@ function Home() {
               onClick={setSectionStageFunc}
               data-index="0"
             >
-              Prompt
+              Raw Code
             </li>
             <li
               className={sectionStage === 1 ? "active" : ""}
@@ -165,6 +165,7 @@ function Home() {
             <textarea
               name="promptMsg"
               id="promptMsg"
+              placeholder="Paste Raw Code and generate Docs"
               ref={promptMsgRef}
               onInput={setTextAreaFunc}
               onKeyDown={handleKeyDown}
