@@ -85,6 +85,7 @@ function Home() {
     try {
       setOpenModal(true);
       setgeneratingCode(true);
+      setDocumentation(null);
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/docs/generate-doc`,
         {
@@ -109,6 +110,7 @@ function Home() {
     try {
       setOpenModal(true);
       setgeneratingCode(true);
+      setDocumentation(null);
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/docs/generate-promt`,
         {
