@@ -152,23 +152,20 @@ router.post("/generate-promt", auth, async (req, res) => {
     const anthropic = new Anthropic({ apiKey: process.env.CLAUDE_API_KEY });
     let documentation = [];
 
-    const prompt = `**Project README Generation Request**
-
-Please create a professional README.md file for my project that follows these requirements:
-1. Use proper GitHub-compatible markdown formatting
-2. Include:
-   - Project title and description
-   - Installation instructions
-   - Usage examples
-   - Main features
-   - Dependencies
-   - Contributing guidelines (if applicable)
-   - License information
-3. Format code snippets with proper syntax highlighting
-4. Structure the content with clear headings
+    const prompt = `**Project Documentation Request -
+          Need a detailed documentation for the following files:\n\n
+          Please create professional documentation for the following files that follows these requirements:
+1. Use proper markdown formatting compatible with GitHub READMEs
+2. For each file, include:
+   - File name as a heading
+   - Brief description of purpose
+   - Explanation of key functions/components
+   - Any dependencies or connections to other project files
+3. Format code snippets with proper syntax highlighting using \`\`\` blocks
+4. Structure the content with clear headings and bullet points
 5. Keep explanations concise and developer-focused
 
-Here are the details about my project:
+Here are the files to document:
           ${promptMsg}
             Return only the formatted documentation without any conversation or extra text.
           `;
