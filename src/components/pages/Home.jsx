@@ -99,6 +99,7 @@ function Home() {
       const err = error?.response?.data.error;
       errorMsgs(err);
       setOpenModal(false);
+      setgeneratingCode(false);
       console.error("Error fetching repos:", error?.response?.data.error);
     }
   };
@@ -121,6 +122,7 @@ function Home() {
       const err = error?.response?.data.error;
       errorMsgs(err);
       setOpenModal(false);
+      setgeneratingCode(false);
       console.error("Error fetching repos:", error?.response?.data.error);
     }
   };
