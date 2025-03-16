@@ -12,9 +12,9 @@ font-family: "Raleway", serif;
 */
 
 :root {
-  --bg: #433D8B;
-  --text: #fff;
-  --header: #000;
+  --bg: #fff;
+  --text: #000;
+  --header: #433D8B;
 }
 
 body{
@@ -60,7 +60,7 @@ body{
   font-size: 2em;
   letter-spacing: -1px;
   font-weight: 600;
-  color: var(--text);
+  color: var(--bg);
   padding: 0.8em 0.8em;
   align-items: center;
   justify-content: center;

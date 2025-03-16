@@ -151,7 +151,7 @@ function Home() {
               onClick={setSectionStageFunc}
               data-index="0"
             >
-              Raw Code
+              Code
             </li>
             <li
               className={sectionStage === 1 ? "active" : ""}
