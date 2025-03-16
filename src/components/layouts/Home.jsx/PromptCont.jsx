@@ -13,7 +13,7 @@ const PromptCont = ({ documentation, generatingCode, setOpenModal }) => {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    if (index < documentation?.length) {
+    if (!generatingCode && index < documentation?.length) {
       const timer = setTimeout(() => {
         setDisplayText(documentation.substring(0, index + typingSpeed));
         setIndex(index + typingSpeed);
