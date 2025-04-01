@@ -152,18 +152,20 @@ router.post("/generate-promt", auth, async (req, res) => {
     const anthropic = new Anthropic({ apiKey: process.env.CLAUDE_API_KEY });
     let documentation = [];
 
-    const prompt = `**Project Documentation Request -
-          Need a detailed documentation for the following files:\n\n
-          Please create professional documentation for the following files that follows these requirements:
-1. Use proper markdown formatting compatible with GitHub READMEs
-2. For each file, include:
-   - File name as a heading
-   - Brief description of purpose
-   - Explanation of key functions/components
-   - Any dependencies or connections to other project files
-3. Format code snippets with proper syntax highlighting using \`\`\` blocks
-4. Structure the content with clear headings and bullet points
-5. Keep explanations concise and developer-focused
+    const prompt = `**User-Focused README Generation Request**
+
+Please create a simple and user-friendly README.md file for my project that follows these guidelines:
+
+1. Use clear, easy-to-understand language for everyday users (no technical jargon).
+2. Include:
+   - A welcoming project title and a short, engaging description
+   - Step-by-step instructions on how users can access and use the app
+   - Key features and benefits (why they should use it)
+   - Frequently asked questions (FAQs) or common troubleshooting tips (if applicable)
+   - Contact or support information (if applicable)
+3. Use proper GitHub-compatible markdown formatting.
+4. Structure the content with clear, well-organized headings for easy reading.
+5. Keep it concise and focused on the **user experience**, not the app’s code or technical details.
 
 Here are the files to document:
           ${promptMsg}
@@ -235,21 +237,21 @@ router.post("/generate-doc", auth, async (req, res) => {
     async function sendToAI(files, category) {
       for (let i = 0; i < files.length; i += 5) {
         const batch = files.slice(i, i + 5);
-        const prompt = `**Project README Generation Request ${category}**
+        const prompt = `**User-Focused README Generation Request**
 
-Please create a professional README.md file for my project that follows these requirements:
-1. Use proper GitHub-compatible markdown formatting
+Please create a simple and user-friendly README.md file for my project that follows these guidelines:
+
+1. Use clear, easy-to-understand language for everyday users (no technical jargon).
 2. Include:
-   - Project title and description
-   - Installation instructions
-   - Usage examples
-   - Main features
-   - Dependencies
-   - Contributing guidelines (if applicable)
-   - License information
-3. Format code snippets with proper syntax highlighting
-4. Structure the content with clear headings
-5. Keep explanations concise and developer-focused
+   - A welcoming project title and a short, engaging description
+   - Step-by-step instructions on how users can access and use the app
+   - Key features and benefits (why they should use it)
+   - Frequently asked questions (FAQs) or common troubleshooting tips (if applicable)
+   - Contact or support information (if applicable)
+3. Use proper GitHub-compatible markdown formatting.
+4. Structure the content with clear, well-organized headings for easy reading.
+5. Keep it concise and focused on the **user experience**, not the app’s code or technical details.
+
 
 Here are the details about my project:
           ${batch
