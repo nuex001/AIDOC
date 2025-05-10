@@ -96,7 +96,7 @@ app.get("/api/repos", auth, async (req, res) => {
     const reposResponse = await axios.get(
       "https://api.github.com/user/repos?visibility=public",
       {
-        headers: { Authorization: `token ${user.accessToken}` },
+        headers: { Authorization: `Bearer ${user.accessToken}` },
       }
     );
     // console.log(reposResponse.data);
@@ -149,6 +149,8 @@ app.get("/api/repobranch", auth, async (req, res) => {
     }));
     res.json(branches);
   } catch (err) {
+    console.log(err);
+    
     console.error("Error fetching branches:", err.message);
     res.status(500).json({ error: err.message });
   }
