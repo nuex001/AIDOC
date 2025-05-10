@@ -32,7 +32,8 @@ passport.use(
     {
       clientID: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
-      callbackURL: "https://aidoc-production-8039.up.railway.app/auth/github/callback",
+      callbackURL:
+        "https://aidoc-production-8039.up.railway.app/auth/github/callback",
       scope: ["read:user", "public_repo", "user:email"],
     },
     async (accessToken, refreshToken, profile, done) => {
@@ -96,12 +97,16 @@ app.get("/api/repos", auth, async (req, res) => {
     const reposResponse = await axios.get(
       "https://api.github.com/user/repos?visibility=public",
       {
-        headers: { Authorization: `Bearer ${user.accessToken}` },
+        headers: {
+          Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+          "User-Agent": "Code-to-Doc-AI",
+          Accept: "application/vnd.github+json", // Recommended
+        },
       }
     );
     // console.log(reposResponse.data);
 
-    const repos = await reposResponse.data;
+    const repos = reposResponse.data;
 
     // Filter only repositories owned by the user (exclude organizations or others)
     const filteredRepos = repos
@@ -150,7 +155,7 @@ app.get("/api/repobranch", auth, async (req, res) => {
     res.json(branches);
   } catch (err) {
     console.log(err);
-    
+
     console.error("Error fetching branches:", err.message);
     res.status(500).json({ error: err.message });
   }
@@ -159,10 +164,13 @@ app.get("/api/repobranch", auth, async (req, res) => {
 // GET USER
 app.get("/api/user", auth, async (req, res) => {
   try {
-    const user = await User.findById(req.user.id, 'avatar dailyUsage username totalUsage');
+    const user = await User.findById(
+      req.user.id,
+      "avatar dailyUsage username totalUsage"
+    );
 
     if (!user) return res.status(401).json({ error: "Unauthorized" });
-    
+
     // Send only the selected fields
     res.json({
       avatar: user.avatar,
